@@ -25,6 +25,9 @@ jobs:
       - run: |
           pwd
           ls -la
+
+          ls -la .github/actions
+          ls -la .github/actions/analysis
         shell: bash
 
       - name: Analysis Action
