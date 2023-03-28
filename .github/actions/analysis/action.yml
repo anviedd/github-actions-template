@@ -1,7 +1,12 @@
 name: Analysis
 description: Analysis Actions
 
-# inputs:
+inputs:
+  python-version:
+    description: "python version"
+    required: true
+    default: "3.11"
+
 #   who-to-greet: # id of input
 #     description: "Who to greet"
 #     required: true
@@ -14,7 +19,14 @@ description: Analysis Actions
 runs:
   using: "composite"
   steps:
+    - name: Set up Python Version
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
     - run: |
+        echo ${{ github.action_path }}
+
         ls -la
         pwd
         # echo Hello ${{ inputs.who-to-greet }}.
