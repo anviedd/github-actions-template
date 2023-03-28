@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - id: Action Main Test
+      - name: Action Main Test
         uses: ./action.yml
         # with:
         #   who-to-greet: "Mona the Octocat"
