@@ -30,6 +30,7 @@ runs:
         python --version
 
         pip install flake8
+      shell: bash
 
     - name: Lint
       run: |
