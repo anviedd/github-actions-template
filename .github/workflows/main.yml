@@ -17,15 +17,23 @@ on:
     inputs:
 
 jobs:
-  count:
+  analysis:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Action Main Test
-        uses: ./action.yml
-        # with:
-        #   who-to-greet: "Mona the Octocat"
+      - run: |
+          pwd
+          ls -la
+        shell: bash
+
+      - name: Analysis Action
+        uses: ./.github/actions/analysis/action.yml
+
+      # - name: Action Main Test
+      #   uses: ./action.yml
+      #   # with:
+      #   #   who-to-greet: "Mona the Octocat"
 
       # - name: App Line Count
       #   shell: bash
