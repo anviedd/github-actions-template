@@ -32,7 +32,6 @@ jobs:
           ls -la
 
           ls -la .github/actions
-          ls -la .github/actions/analysis
         shell: bash
 
       - name: run analysis
