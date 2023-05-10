@@ -35,12 +35,8 @@ jobs:
           ls -la .github/actions/analysis
         shell: bash
 
-      - name: action.yml
-        uses: ./action.yml@main
-
-        # uses: "anviedd/github-actions-template/.github/workflows/code-analysis.yml@main"
-
-        # uses: ./.github/actions/analysis
+      - name: run analysis
+        uses: ./.github/actions/analysis
 
       # - name: Action Main Test
       #   uses: ./action.yml

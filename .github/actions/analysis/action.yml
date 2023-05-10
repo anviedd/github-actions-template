@@ -32,15 +32,18 @@ runs:
         pip install flake8
       shell: bash
 
-    - name: Lint
-      run: |
-        flake8 --statistics
+    - name: Run Linter
+      uses: ./.github/actions/analysis/linter.yml
 
-        echo ${{ github.action_path }}
-        ls -la
-        pwd
-        # echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
+    # - name: Lint
+    #   run: |
+    #     flake8 --statistics
+
+    #     echo ${{ github.action_path }}
+    #     ls -la
+    #     pwd
+    #     # echo Hello ${{ inputs.who-to-greet }}.
+    #   shell: bash
 
     # - id: random-number-generator
     #   run: |
