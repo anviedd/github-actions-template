@@ -13,8 +13,12 @@ on:
       - staging
       - main
 
-  # workflow_dispatch:
-  #   inputs:
+  workflow_dispatch:
+    inputs:
+      text:
+        type: string
+        required: true
+        description: "Text data"
 
 jobs:
   analysis:
