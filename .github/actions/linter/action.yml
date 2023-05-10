@@ -11,21 +11,31 @@ runs:
     - name: Lint
       run: |
         flake8 --statistics > ./.lint.log
+      shell: bash
 
     - name: Lint flake8-builtins
       run: |
         pip install flake8-builtins
         flake8 --statistics > ./.lint.log
+      shell: bash
 
     - name: Lint flake8-bugbear
       run: |
         pip install flake8-bugbear
         flake8 --statistics > ./.lint.log
+      shell: bash
 
     - name: Lint pep8-naming
       run: |
         pip install pep8-naming
         flake8 --statistics > ./.lint.log
+      shell: bash
+
+    - name: cat .lint.log
+      run: |
+        ls -la && pwd
+        cat ./.lint.log
+      shell: bash
 
     # - if: failure()
     #   env:
