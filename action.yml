@@ -26,7 +26,8 @@ runs:
     #     ${{ github.action_path }}/goodbye.sh
     #   shell: bash
 
-    - run: |
+    - name: Main Action
+      run: |
         pwd
         echo ${{ github.action_path }}
         # ${{ github.action_path }}/goodbye.sh

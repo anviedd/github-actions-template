@@ -13,8 +13,8 @@ on:
       - staging
       - main
 
-  workflow_dispatch:
-    inputs:
+  # workflow_dispatch:
+  #   inputs:
 
 jobs:
   analysis:
@@ -31,7 +31,9 @@ jobs:
         shell: bash
 
       - name: Analysis Action
-        uses: ./.github/actions/analysis
+        uses: .
+
+        # uses: ./.github/actions/analysis
 
       # - name: Action Main Test
       #   uses: ./action.yml
