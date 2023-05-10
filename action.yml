@@ -34,4 +34,4 @@ runs:
       shell: bash
 
     - name: Analysis Action
-      uses: ./.github/actions/analysis
+      uses: ./.github/actions

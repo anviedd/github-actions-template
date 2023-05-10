@@ -36,7 +36,7 @@ jobs:
         shell: bash
 
       - name: run analysis
-        uses: ./.github/actions/analysis
+        uses: ./.github/actions
 
       # - name: Action Main Test
       #   uses: ./action.yml
