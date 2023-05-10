@@ -26,7 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: |
+      - name: pwd
+        run: |
           pwd
           ls -la
 
@@ -34,7 +35,7 @@ jobs:
           ls -la .github/actions/analysis
         shell: bash
 
-      - name: Analysis Action
+      - name: action.yml
         uses: ./action.yml@main
 
         # uses: "anviedd/github-actions-template/.github/workflows/code-analysis.yml@main"
