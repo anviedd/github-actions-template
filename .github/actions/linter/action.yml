@@ -5,33 +5,27 @@ runs:
     - name: Install dependencies Linter
       run: |
         python --version
-
-        pip list
-
-        # python -m pip install --upgrade pip
-        # pip install flake8
+        pip install flake8
       shell: bash
 
-    # - name: Lint
-    #   run: |
-    #     flake8 --statistics > ./.lint.log
+    - name: Lint
+      run: |
+        flake8 --statistics > ./.lint.log
 
-    # - name: Lint flake8-builtins
-    #   run: |
-    #     pip install flake8-builtins
-    #     flake8 --statistics > ./.lint.log
+    - name: Lint flake8-builtins
+      run: |
+        pip install flake8-builtins
+        flake8 --statistics > ./.lint.log
 
-    # - name: Lint flake8-bugbear
-    #   run: |
-    #     pip install flake8-bugbear
-    #     flake8 --statistics > ./.lint.log
+    - name: Lint flake8-bugbear
+      run: |
+        pip install flake8-bugbear
+        flake8 --statistics > ./.lint.log
 
-    # - name: Lint pep8-naming
-    #   run: |
-    #     pip install pep8-naming
-    #     flake8 --statistics > ./.lint.log
-    #     # TODO: Enable flake8 for db
-    #     # flake8 --statistics app db
+    - name: Lint pep8-naming
+      run: |
+        pip install pep8-naming
+        flake8 --statistics > ./.lint.log
 
     # - if: failure()
     #   env:
