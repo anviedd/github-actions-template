@@ -35,7 +35,7 @@ jobs:
         shell: bash
 
       - name: Analysis Action
-        uses: anviedd/github-actions-template
+        uses: ./action.yml@main
 
         # uses: "anviedd/github-actions-template/.github/workflows/code-analysis.yml@main"
 
