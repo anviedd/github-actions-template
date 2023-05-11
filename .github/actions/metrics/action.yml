@@ -1,20 +1,20 @@
 name: Analysis metrics
 inputs:
-  python-version:
-    description: "python version"
-    required: true
-    default: "3.10"
+  github-token:
+    description: "GITHUB_TOKEN"
+    required: false
+    default: ""
   max-absolute:
     description: "xenon's max-absolute"
-    required: true
+    required: false
     default: "B"
   max-modules:
     description: "xenon's max-modules"
-    required: true
+    required: false
     default: "A"
   max-average:
     description: "xenon's max-average"
-    required: true
+    required: false
     default: "A"
 
 runs:
@@ -50,7 +50,6 @@ runs:
       uses: Uno-Takashi/Lizard-Runner@v3
       with:
         language: "python"
-        # path: "./"
         CCN: "10"
         output_file: "./.metrics.log"
 
@@ -59,4 +58,20 @@ runs:
         xenon --max-absolute ${{ inputs.max-absolute }} \
               --max-modules ${{ inputs.max-modules }} \
               --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
+      shell: bash
+
+    - if: failure() && inputs.github-token != ''
+      run: |
+        URL=${{ github.event.pull_request.html_url }}
+        GITHUB_TOKEN=${{ inputs.github-token }}
+
+        echo "\n" >> ./.metrics.log
+        echo "# Metrics \n" >> ./.metrics.log
+        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.metrics.log
+
+        echo $URL
+        echo $GITHUB_TOKEN
+        cat ./.metrics.log
+
+        gh pr comment --body-file ./.metrics.log "${URL}"
       shell: bash

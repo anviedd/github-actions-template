@@ -2,7 +2,7 @@ name: Analysis Lint
 inputs:
   github-token:
     description: "GITHUB_TOKEN"
-    required: true
+    required: false
     default: ""
 
 runs:
@@ -42,13 +42,13 @@ runs:
         URL=${{ github.event.pull_request.html_url }}
         GITHUB_TOKEN=${{ inputs.github-token }}
 
-        # echo "" >> ./.lint.log
-        # echo "Lint" >> ./.lint.log
-        # echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.lint.log
+        echo "\n" >> ./.lint.log
+        echo "# Lint \n" >> ./.lint.log
+        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.lint.log
 
         echo $URL
         echo $GITHUB_TOKEN
         cat ./.lint.log
 
-        # gh pr comment --body-file ./.lint.log "${URL}"
+        gh pr comment --body-file ./.lint.log "${URL}"
       shell: bash

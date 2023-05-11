@@ -1,4 +1,10 @@
 name: Analysis Security
+inputs:
+  github-token:
+    description: "GITHUB_TOKEN"
+    required: false
+    default: ""
+
 runs:
   using: "composite"
   steps:
@@ -13,12 +19,12 @@ runs:
         pip install dlint
       shell: bash
 
-    # - name: Packj Security Audit
-    #   uses: ossillate-inc/packj-github-action@v0.0.8-beta
-    #   with:
-    #     # TODO: replace with your dependency files in the repo
-    #     DEPENDENCY_FILES: pypi:requirements.txt
-    #     REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Packj Security Audit
+      if: inputs.github-token != ''
+      uses: ossillate-inc/packj-github-action@v0.0.8-beta
+      with:
+        DEPENDENCY_FILES: pypi:requirements.txt
+        REPO_TOKEN: ${{ inputs.github-token }}
 
     - name: Security Bandit
       run: |
@@ -30,4 +36,20 @@ runs:
     - name: Security Dlint
       run: |
         flake8 --statistics --select=DUO >> ./.security.log
+      shell: bash
+
+    - if: failure() && inputs.github-token != ''
+      run: |
+        URL=${{ github.event.pull_request.html_url }}
+        GITHUB_TOKEN=${{ inputs.github-token }}
+
+        echo "\n" >> ./.security.log
+        echo "# Security \n" >> ./.metrics.log
+        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.security.log
+
+        echo $URL
+        echo $GITHUB_TOKEN
+        cat ./.security.log
+
+        gh pr comment --body-file ./.security.log "${URL}"
       shell: bash

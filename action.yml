@@ -39,9 +39,15 @@ runs:
 
     - name: Run Metrics
       uses: anviedd/github-actions-template/.github/actions/metrics@main
+      with:
+        github-token: ${{ inputs.github-token }}
 
     - name: Run Security
       uses: anviedd/github-actions-template/.github/actions/security@main
+      with:
+        github-token: ${{ inputs.github-token }}
 
     - name: Run Type
       uses: anviedd/github-actions-template/.github/actions/type@main
+      with:
+        github-token: ${{ inputs.github-token }}
