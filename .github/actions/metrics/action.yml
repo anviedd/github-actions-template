@@ -1,4 +1,22 @@
 name: Analysis metrics
+inputs:
+  python-version:
+    description: "python version"
+    required: true
+    default: "3.10"
+  max-absolute:
+    description: "xenon's max-absolute"
+    required: true
+    default: "B"
+  max-modules:
+    description: "xenon's max-modules"
+    required: true
+    default: "A"
+  max-average:
+    description: "xenon's max-average"
+    required: true
+    default: "A"
+
 runs:
   using: "composite"
   steps:
@@ -28,15 +46,17 @@ runs:
         flake8 --max-expression-complexity=7 --statistics > ./.metrics.log
       shell: bash
 
-    # - name: Lizard Runner
-    #   uses: Uno-Takashi/Lizard-Runner@v3
-    #   with:
-    #     language: "python"
-    #     path: "./"
-    #     CCN: "10"
-    #     output_file: "./.metrics.log"
+    - name: Lizard Runner
+      uses: Uno-Takashi/Lizard-Runner@v3
+      with:
+        language: "python"
+        # path: "./"
+        CCN: "10"
+        output_file: "./.metrics.log"
 
     - name: Xenon
       run: |
-        xenon --version
+        xenon --max-absolute ${{ inputs.max-absolute }} \
+              --max-modules ${{ inputs.max-modules }} \
+              --max-average ${{ inputs.max-average }} >> ./.metrics.log
       shell: bash
