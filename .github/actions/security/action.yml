@@ -26,7 +26,9 @@ runs:
         bandit -r ./ >> ./.security.log
 
         # bandit -c bandit.yaml -r {dir} >>
+      shell: bash
 
     - name: Security Dlint
       run: |
         flake8 --statistics --select=DUO >> ./.security.log
+      shell: bash
