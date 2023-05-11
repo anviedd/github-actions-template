@@ -34,4 +34,5 @@ runs:
       shell: bash
 
     - name: Analysis Action
-      uses: ./.github/actions
+      uses: anviedd/github-actions-template/.github/actions
+      # uses: ./.github/actions
