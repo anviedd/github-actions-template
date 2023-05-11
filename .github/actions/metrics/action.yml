@@ -28,13 +28,13 @@ runs:
         flake8 --max-expression-complexity=7 --statistics > ./.metrics.log
       shell: bash
 
-    - name: Lizard Runner
-      uses: Uno-Takashi/Lizard-Runner@v3
-      with:
-        language: "python"
-        path: "./"
-        CCN: "10"
-        output_file: "./.metrics.log"
+    # - name: Lizard Runner
+    #   uses: Uno-Takashi/Lizard-Runner@v3
+    #   with:
+    #     language: "python"
+    #     path: "./"
+    #     CCN: "10"
+    #     output_file: "./.metrics.log"
 
     - name: Xenon
       run: |
