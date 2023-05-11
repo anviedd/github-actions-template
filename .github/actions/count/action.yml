@@ -8,15 +8,15 @@ runs:
         pip install flake8
       shell: bash
 
-      - name: App Line Count
-        shell: bash
-        run: |
-          # LINE_COUNT=`find ./app -name "*.py" | xargs wc -l | awk '{ if ($1 >= 500) {print}}'`
-          # echo $LINE_COUNT > line_count.log
+    - name: App Line Count
+      shell: bash
+      run: |
+        # LINE_COUNT=`find ./app -name "*.py" | xargs wc -l | awk '{ if ($1 >= 500) {print}}'`
+        # echo $LINE_COUNT > line_count.log
 
-          ls -la
-          pwd
+        ls -la
+        pwd
 
-          # sh .github/workflows/line_count.sh
-        shell: bash
+        # sh .github/workflows/line_count.sh
+      shell: bash
 
