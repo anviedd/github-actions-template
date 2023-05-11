@@ -29,3 +29,18 @@ runs:
         python -m pip install --upgrade pip
         python --version
       shell: bash
+
+    - name: Run Count
+      uses: anviedd/github-actions-template/.github/actions/count@main
+
+    - name: Run Lint
+      uses: anviedd/github-actions-template/.github/actions/lint@main
+
+    - name: Run Metrics
+      uses: anviedd/github-actions-template/.github/actions/metrics@main
+
+    - name: Run Security
+      uses: anviedd/github-actions-template/.github/actions/security@main
+
+    - name: Run Type
+      uses: anviedd/github-actions-template/.github/actions/type@main
