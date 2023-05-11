@@ -1,0 +1,8 @@
+name: Analysis Format
+runs:
+  using: "composite"
+  steps:
+    - name: Format
+      uses: psf/black@stable
+      with:
+        src: "./"

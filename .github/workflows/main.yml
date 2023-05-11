@@ -41,13 +41,6 @@ jobs:
           python --version
         shell: bash
 
-      - name: Main Action
-        run: |
-          pwd
-          echo ${{ github.action_path }}
-          # ${{ github.action_path }}/goodbye.sh
-        shell: bash
-
       - name: Run Count
         uses: anviedd/github-actions-template/.github/actions/count@main
 
