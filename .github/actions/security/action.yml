@@ -17,6 +17,8 @@ runs:
 
         pip install bandit
         pip install dlint
+
+        echo ${{ inputs.github-token }}
       shell: bash
 
     - name: Packj Security Audit
