@@ -5,6 +5,10 @@ inputs:
     description: "python version"
     required: true
     default: "3.10"
+  github-token:
+    description: "GITHUB_TOKEN"
+    required: true
+    default: ""
 
 # outputs:
 #   random-number:
@@ -30,6 +34,8 @@ runs:
 
     - name: Run Lint
       uses: anviedd/github-actions-template/.github/actions/lint@main
+      with:
+        github-token: ${{ inputs.github-token }}
 
     - name: Run Metrics
       uses: anviedd/github-actions-template/.github/actions/metrics@main
