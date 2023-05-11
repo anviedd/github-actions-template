@@ -42,3 +42,4 @@ runs:
         cat ./.lint.log
 
         # gh pr comment --body-file ./.lint.log "${URL}"
+      shell: bash
