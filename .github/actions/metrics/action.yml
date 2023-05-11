@@ -58,5 +58,5 @@ runs:
       run: |
         xenon --max-absolute ${{ inputs.max-absolute }} \
               --max-modules ${{ inputs.max-modules }} \
-              --max-average ${{ inputs.max-average }} >> ./.metrics.log
+              --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
       shell: bash
