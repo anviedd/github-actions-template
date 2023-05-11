@@ -49,16 +49,16 @@ jobs:
         shell: bash
 
       - name: Run Count
-        uses: ./.github/actions/count@main
+        uses: anviedd/github-actions-template/.github/actions/count@main
 
       - name: Run Lint
-        uses: ./.github/actions/lint@main
+        uses: anviedd/github-actions-template/.github/actions/lint@main
 
       - name: Run Metrics
-        uses: ./.github/actions/metrics@main
+        uses: anviedd/github-actions-template/.github/actions/metrics@main
 
       - name: Run Security
-        uses: ./.github/actions/security@main
+        uses: anviedd/github-actions-template/.github/actions/security@main
 
       - name: Run Type
-        uses: ./.github/actions/type@main
+        uses: anviedd/github-actions-template/.github/actions/type@main
