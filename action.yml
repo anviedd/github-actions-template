@@ -1,6 +1,11 @@
 name: Action Base
 description: Action Base Description
-# inputs:
+inputs:
+  python-version:
+    description: "python version"
+    required: true
+    default: "3.11"
+
 #   who-to-greet: # id of input
 #     description: "Who to greet"
 #     required: true
@@ -13,18 +18,16 @@ description: Action Base Description
 runs:
   using: "composite"
   steps:
-    # - run: |
-    #     echo Hello ${{ inputs.who-to-greet }}.
-    #   shell: bash
+    - name: Set up Python Version
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
 
-    # - id: random-number-generator
-    #   run: |
-    #     echo "::set-output name=random-id::$(echo $RANDOM)"
-    #   shell: bash
-
-    # - run: |
-    #     ${{ github.action_path }}/goodbye.sh
-    #   shell: bash
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python --version
+      shell: bash
 
     - name: Main Action
       run: |
@@ -33,6 +36,17 @@ runs:
         # ${{ github.action_path }}/goodbye.sh
       shell: bash
 
-    - name: Analysis Action
-      uses: anviedd/github-actions-template/.github/actions@main
-      # uses: ./.github/actions
+    - name: Run Count
+      uses: anviedd/github-actions-template/.github/actions/count@main
+
+    - name: Run Lint
+      uses: anviedd/github-actions-template/.github/actions/lint@main
+
+    - name: Run Metrics
+      uses: anviedd/github-actions-template/.github/actions/metrics@main
+
+    - name: Run Security
+      uses: anviedd/github-actions-template/.github/actions/security@main
+
+    - name: Run Type
+      uses: anviedd/github-actions-template/.github/actions/type@main
