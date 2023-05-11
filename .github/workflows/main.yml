@@ -18,7 +18,7 @@ on:
       python-version:
         description: "python version"
         required: true
-        default: "3.11"
+        default: "3.10"
 
 jobs:
   analysis:
