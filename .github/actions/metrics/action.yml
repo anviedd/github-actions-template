@@ -1,0 +1,42 @@
+name: Analysis metrics
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies Linter
+      run: |
+        python --version
+
+        python -m pip install --upgrade pip
+        pip install xenon
+        pip install radon
+
+        pip install flake8
+        pip install flake8-cognitive-complexity
+        pip install flake8-expression-complexity
+
+      shell: bash
+
+    - name: flake8-cognitive-complexity
+      run: |
+        echo "cognitive-complexity"
+        flake8 --max-cognitive-complexity=7 --statistics > ./.metrics.log
+      shell: bash
+
+    - name: flake8-expression-complexity
+      run: |
+        echo "expression-complexity"
+        flake8 --max-expression-complexity=7 --statistics > ./.metrics.log
+      shell: bash
+
+    - name: Lizard Runner
+      uses: Uno-Takashi/Lizard-Runner@v3
+      with:
+        language: "python"
+        path: "./"
+        CCN: "10"
+        output_file: "./.metrics.log"
+
+    - name: Xenon
+      run: |
+        xenon --version
+      shell: bash

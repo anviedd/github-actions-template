@@ -26,27 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: pwd
-        run: |
-          pwd
-          ls -la
-
-          ls -la .github/actions
+      - run: |
+          pwd && ls -la
         shell: bash
 
-      - name: run analysis
+      - name: Run Analysis
         uses: ./.github/actions
-
-      # - name: Action Main Test
-      #   uses: ./action.yml
-      #   # with:
-      #   #   who-to-greet: "Mona the Octocat"
-
-      # - name: App Line Count
-      #   shell: bash
-      #   run: |
-      #     # LINE_COUNT=`find ./app -name "*.py" | xargs wc -l | awk '{ if ($1 >= 500) {print}}'`
-      #     # echo $LINE_COUNT > line_count.log
-      #     ls -la
-      #     pwd
-      #     # sh .github/workflows/line_count.sh

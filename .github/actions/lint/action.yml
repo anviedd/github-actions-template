@@ -1,4 +1,4 @@
-name: Analysis Linter
+name: Analysis Lint
 runs:
   using: "composite"
   steps:

@@ -1,0 +1,32 @@
+name: Analysis Security
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies Linter
+      run: |
+        python --version
+
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install flake8
+
+        pip install bandit
+        pip install dlint
+      shell: bash
+
+    - name: Packj Security Audit
+      uses: ossillate-inc/packj-github-action@v0.0.8-beta
+      with:
+        # TODO: replace with your dependency files in the repo
+        DEPENDENCY_FILES: pypi:requirements.txt
+        REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Security Bandit
+      run: |
+        bandit -r ./ >> ./.security.log
+
+        # bandit -c bandit.yaml -r {dir} >>
+
+    - name: Security Dlint
+      run: |
+        flake8 --statistics --select=DUO >> ./.security.log

@@ -1,0 +1,22 @@
+name: Analysis Count
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies Linter
+      run: |
+        python --version
+        pip install flake8
+      shell: bash
+
+      - name: App Line Count
+        shell: bash
+        run: |
+          # LINE_COUNT=`find ./app -name "*.py" | xargs wc -l | awk '{ if ($1 >= 500) {print}}'`
+          # echo $LINE_COUNT > line_count.log
+
+          ls -la
+          pwd
+
+          # sh .github/workflows/line_count.sh
+        shell: bash
+

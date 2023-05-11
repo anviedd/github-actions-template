@@ -29,26 +29,3 @@ runs:
         python -m pip install --upgrade pip
         python --version
       shell: bash
-
-    - name: Run Linter
-      uses: anviedd/github-actions-template/.github/actions/linter@main
-      # uses: ./.github/actions/linter
-
-    # - name: Lint
-    #   run: |
-    #     flake8 --statistics
-
-    #     echo ${{ github.action_path }}
-    #     ls -la
-    #     pwd
-    #     # echo Hello ${{ inputs.who-to-greet }}.
-    #   shell: bash
-
-    # - id: random-number-generator
-    #   run: |
-    #     echo "::set-output name=random-id::$(echo $RANDOM)"
-    #   shell: bash
-
-    # - run: |
-    #     ${{ github.action_path }}/goodbye.sh
-    #   shell: bash
