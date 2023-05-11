@@ -3,11 +3,11 @@ description: Action Base Description
 inputs:
   python-version:
     description: "python version"
-    required: true
+    required: false
     default: "3.10"
   github-token:
     description: "GITHUB_TOKEN"
-    required: true
+    required: false
     default: ""
 
 # outputs:
