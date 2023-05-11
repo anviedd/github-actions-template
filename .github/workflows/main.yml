@@ -33,6 +33,7 @@ jobs:
 
       - run: |
           pwd && ls -la
+          echo ${{ inputs.python-version }}
         shell: bash
 
       - name: Install dependencies
