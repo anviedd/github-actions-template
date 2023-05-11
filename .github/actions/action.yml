@@ -31,7 +31,8 @@ runs:
       shell: bash
 
     - name: Run Linter
-      uses: ./.github/actions/linter
+      uses: anviedd/github-actions-template/.github/actions/linter@main
+      # uses: ./.github/actions/linter
 
     # - name: Lint
     #   run: |
