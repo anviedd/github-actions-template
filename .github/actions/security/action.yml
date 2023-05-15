@@ -7,8 +7,8 @@ inputs:
   bandit-yml-path:
     description: "bandit-yml file's path"
     required: false
-    # default: ""
-    default: "bandit.yaml"
+    default: ""
+    # default: "bandit.yaml"
 
 runs:
   using: "composite"
