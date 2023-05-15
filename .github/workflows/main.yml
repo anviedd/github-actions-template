@@ -44,6 +44,9 @@ jobs:
 
       - name: Run Count
         uses: anviedd/github-actions-template/.github/actions/count@main
+        with:
+          app-line-count-dir: "./"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Lint
         uses: anviedd/github-actions-template/.github/actions/lint@main

@@ -8,6 +8,10 @@ inputs:
     description: "app-line-count-dir path"
     required: true
     default: ""
+  line-count-max:
+    description: "line-count-max"
+    required: false
+    default: 500
 
 runs:
   using: "composite"
@@ -22,7 +26,8 @@ runs:
       if: inputs.app-line-count-dir != ''
       run: |
         # LINE_COUNT=`find ./app -name "*.py" | xargs wc -l | awk '{ if ($1 >= 500) {print}}'`
-        LINE_COUNT=`find ${{ inputs.app-line-count-dir }} -name "*.py" | xargs wc -l | awk '{ if ($1 >= 500) {print}}'`
+
+        LINE_COUNT=`find ${{ inputs.app-line-count-dir }} -name "*.py" | xargs wc -l | awk '{ if ($1 >= ${{ inputs.line-count-max }}) {print}}'`
         echo $LINE_COUNT > line_count.log
 
         ls -la

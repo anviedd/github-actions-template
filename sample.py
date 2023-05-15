@@ -1,2 +1,5 @@
-def sample():
+def sample() -> None:
     pass
+
+
+sample()
