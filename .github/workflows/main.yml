@@ -93,7 +93,7 @@ jobs:
         uses: anviedd/github-actions-template/.github/actions/metrics@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # max-absolute: ${{ inputs.max-absolute }}
+          max-absolute: ${{ inputs.max-absolute }}
           # max-modules: ${{ inputs.max-modules }}
           # max-average: ${{ inputs.max-average }}
           # language: ${{ inputs.language }}
