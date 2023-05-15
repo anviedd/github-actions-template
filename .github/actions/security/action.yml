@@ -36,6 +36,8 @@ runs:
     - name: Security Bandit
       if: inputs.bandit-yml-path == ''
       run: |
+        ls -la && pwd
+
         bandit -r ./ >> ./.security.log
       shell: bash
 
@@ -43,6 +45,8 @@ runs:
       if: inputs.bandit-yml-path != ''
       run: |
         echo ${{ inputs.bandit-yml-path }}
+        ls -la && pwd
+
         bandit -c ${{ inputs.bandit-yml-path }} -r ./ >> ./.security.log
       shell: bash
 
