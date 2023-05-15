@@ -16,6 +16,14 @@ inputs:
     description: "xenon's max-average"
     required: false
     default: "A"
+  language:
+    description: "analysis language"
+    required: false
+    default: "python"
+  ccn:
+    description: "lizard's ccn"
+    required: false
+    default: "10"
 
 runs:
   using: "composite"
@@ -49,8 +57,8 @@ runs:
     - name: Lizard Runner
       uses: Uno-Takashi/Lizard-Runner@v3
       with:
-        language: "python"
-        CCN: "10"
+        language: ${{ inputs.language }}
+        CCN: ${{ inputs.ccn }}
         output_file: "./.metrics.log"
 
     - name: Xenon

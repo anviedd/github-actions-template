@@ -4,6 +4,11 @@ inputs:
     description: "GITHUB_TOKEN"
     required: false
     default: ""
+  bandit-yml-path:
+    description: "bandit-yml file's path"
+    required: false
+    # default: ""
+    default: "bandit.yaml"
 
 runs:
   using: "composite"
@@ -29,10 +34,15 @@ runs:
         REPO_TOKEN: ${{ inputs.github-token }}
 
     - name: Security Bandit
+      if: inputs.bandit-yml-path == ''
       run: |
         bandit -r ./ >> ./.security.log
+      shell: bash
 
-        # bandit -c bandit.yaml -r {dir} >>
+    - name: Security Bandit (setting file)
+      if: inputs.bandit-yml-path != ''
+      run: |
+        bandit -c ${{ inputs.bandit-yml-path }} -r ./ >> ./.security.log
       shell: bash
 
     - name: Security Dlint
