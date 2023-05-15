@@ -24,11 +24,11 @@ runs:
       shell: bash
 
     - name: Run pyright
-      if: inputs.github-token == "''"
+      if: inputs.pyright-version == ''
       uses: jakebailey/pyright-action@v1.5.1
 
     - name: Run pyright (pyright-version)
-      if: inputs.pyright-version != ""
+      if: inputs.pyright-version != ''
       uses: jakebailey/pyright-action@v1.5.1
       with:
         version: ${{ inputs.pyright-version }}
