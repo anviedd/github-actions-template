@@ -42,6 +42,7 @@ runs:
     - name: Security Bandit (setting file)
       if: inputs.bandit-yml-path != ''
       run: |
+        echo ${{ inputs.bandit-yml-path }}
         bandit -c ${{ inputs.bandit-yml-path }} -r ./ >> ./.security.log
       shell: bash
 
