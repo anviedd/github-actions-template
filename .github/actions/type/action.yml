@@ -23,7 +23,7 @@ runs:
     #     pyright
     #   shell: bash
     - name: Run pyright
-      uses: jakebailey/pyright-action
+      uses: jakebailey/pyright-action@v1.5.1
       # with:
       #   version: 1.1.268
 
