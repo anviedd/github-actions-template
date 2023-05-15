@@ -64,8 +64,8 @@ jobs:
 
       - name: Set up Python Version
         uses: actions/setup-python@v4
-        with:
-          python-version: ${{ inputs.python-version }}
+        # with:
+        #   python-version: ${{ inputs.python-version }}
 
       - run: |
           pwd && ls -la
@@ -81,7 +81,7 @@ jobs:
       - name: Run Count
         uses: anviedd/github-actions-template/.github/actions/count@main
         with:
-          app-line-count-dir: ${{ inputs.app-line-count-dir }}
+          # app-line-count-dir: ${{ inputs.app-line-count-dir }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Lint
@@ -93,7 +93,7 @@ jobs:
         uses: anviedd/github-actions-template/.github/actions/metrics@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          max-absolute: ${{ inputs.max-absolute }}
+          # max-absolute: ${{ inputs.max-absolute }}
           # max-modules: ${{ inputs.max-modules }}
           # max-average: ${{ inputs.max-average }}
           # language: ${{ inputs.language }}
