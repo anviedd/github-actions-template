@@ -20,6 +20,42 @@ on:
         required: false
         default: "3.10"
 
+      app-line-count-dir:
+        description: "app-line-count-dir path"
+        required: false
+        default: "./"
+
+      max-absolute:
+        description: "xenon's max-absolute"
+        required: false
+        default: "B"
+      max-modules:
+        description: "xenon's max-modules"
+        required: false
+        default: "A"
+      max-average:
+        description: "xenon's max-average"
+        required: false
+        default: "A"
+      language:
+        description: "analysis language"
+        required: false
+        default: "python"
+      ccn:
+        description: "lizard's ccn"
+        required: false
+        default: "10"
+
+      bandit-yml-path:
+        description: "bandit-yml file's path"
+        required: false
+        default: ""
+
+      pyright-version:
+        description: "pyright-version"
+        required: false
+        default: ""
+
 jobs:
   analysis:
     runs-on: ubuntu-latest
@@ -45,7 +81,7 @@ jobs:
       - name: Run Count
         uses: anviedd/github-actions-template/.github/actions/count@main
         with:
-          app-line-count-dir: "./"
+          app-line-count-dir: ${{ inputs.app-line-count-dir }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Lint
@@ -57,11 +93,17 @@ jobs:
         uses: anviedd/github-actions-template/.github/actions/metrics@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          max-absolute: ${{ inputs.max-absolute }}
+          max-modules: ${{ inputs.max-modules }}
+          max-average: ${{ inputs.max-average }}
+          language: ${{ inputs.language }}
+          ccn: ${{ inputs.ccn }}
 
       - name: Run Security
         uses: anviedd/github-actions-template/.github/actions/security@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          bandit-yml-path: ${{ inputs.bandit-yml-path }}
 
       - name: Run Type
         uses: anviedd/github-actions-template/.github/actions/type@main

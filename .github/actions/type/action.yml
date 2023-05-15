@@ -4,6 +4,11 @@ inputs:
     description: "GITHUB_TOKEN"
     required: false
     default: ""
+  pyright-version:
+    description: "pyright-version"
+    required: false
+    default: ""
+    # default: 1.1.308
 
 runs:
   using: "composite"
@@ -18,14 +23,15 @@ runs:
 
       shell: bash
 
-    # - name: Run Pyright
-    #   run: |
-    #     pyright
-    #   shell: bash
     - name: Run pyright
+      if: inputs.github-token == ""
       uses: jakebailey/pyright-action@v1.5.1
-      # with:
-      #   version: 1.1.268
+
+    - name: Run pyright (pyright-version)
+      if: inputs.pyright-version != ""
+      uses: jakebailey/pyright-action@v1.5.1
+      with:
+        version: ${{ inputs.pyright-version }}
 
     - name: Run mypy
       run: |
