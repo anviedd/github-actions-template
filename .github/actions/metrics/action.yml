@@ -32,6 +32,8 @@ runs:
       run: |
         python --version
 
+        echo ${{ inputs }}
+
         python -m pip install --upgrade pip
         pip install xenon
         pip install radon
@@ -57,8 +59,10 @@ runs:
     - name: Lizard Runner
       uses: Uno-Takashi/Lizard-Runner@v3
       with:
-        language: ${{ inputs.language }}
-        CCN: ${{ inputs.ccn }}
+        # language: ${{ inputs.language }}
+        # CCN: ${{ inputs.ccn }}
+        language: "python"
+        CCN: "10"
         output_file: "./.metrics.log"
 
     - name: Xenon
