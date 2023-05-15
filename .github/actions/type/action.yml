@@ -24,7 +24,7 @@ runs:
       shell: bash
 
     - name: Run pyright
-      if: inputs.github-token == ""
+      if: inputs.github-token == "''"
       uses: jakebailey/pyright-action@v1.5.1
 
     - name: Run pyright (pyright-version)
