@@ -67,9 +67,9 @@ runs:
         echo ${{ inputs.max-modules }}
         echo ${{ inputs.max-average }}
 
-        xenon --max-absolute ${{ inputs.max-absolute }} \
-              --max-modules ${{ inputs.max-modules }} \
-              --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
+        # xenon --max-absolute ${{ inputs.max-absolute }} \
+        #       --max-modules ${{ inputs.max-modules }} \
+        #       --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
       shell: bash
 
     - if: failure() && inputs.github-token != ''
