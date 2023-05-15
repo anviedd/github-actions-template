@@ -93,11 +93,11 @@ jobs:
         uses: anviedd/github-actions-template/.github/actions/metrics@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          max-absolute: ${{ inputs.max-absolute }}
-          max-modules: ${{ inputs.max-modules }}
-          max-average: ${{ inputs.max-average }}
-          language: ${{ inputs.language }}
-          ccn: ${{ inputs.ccn }}
+          # max-absolute: ${{ inputs.max-absolute }}
+          # max-modules: ${{ inputs.max-modules }}
+          # max-average: ${{ inputs.max-average }}
+          # language: ${{ inputs.language }}
+          # ccn: ${{ inputs.ccn }}
 
       - name: Run Security
         uses: anviedd/github-actions-template/.github/actions/security@main
