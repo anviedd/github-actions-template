@@ -66,6 +66,7 @@ runs:
     - name: Lizard Runner
       run: |
         echo "Lizard Runner"
+        ls -la && pwd
 
         lizard --language ${{ inputs.language }} \
               --CCN ${{ inputs.ccn }} \
@@ -73,8 +74,7 @@ runs:
               --arguments 100 \
               --ignore_warnings 0 \
               --working_threads 4 \
-              -T"nloc=1000000" \
-              -W"whitelizard.txt" . >> ./.metrics.log
+              -T"nloc=1000000" . >> ./.metrics.log
       shell: bash
 
     # - name: Lizard Runner
