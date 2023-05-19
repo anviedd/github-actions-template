@@ -30,6 +30,13 @@ runs:
   steps:
     - name: Install dependencies Linter
       run: |
+        echo ${{ inputs.max-absolute }}
+        echo ${{ inputs.max-modules }}
+        echo ${{ inputs.max-average }}
+
+        echo ${{ inputs.language }}
+        echo ${{ inputs.ccn }}
+
         python --version
 
         python -m pip install --upgrade pip
@@ -54,19 +61,15 @@ runs:
         flake8 --max-expression-complexity=7 --statistics > ./.metrics.log
       shell: bash
 
-    # - name: Lizard Runner
-    #   uses: Uno-Takashi/Lizard-Runner@v3
-    #   with:
-    #     language: ${{ inputs.language }}
-    #     CCN: ${{ inputs.ccn }}
-    #     output_file: "./.metrics.log"
+    - name: Lizard Runner
+      uses: Uno-Takashi/Lizard-Runner@v3
+      with:
+        language: ${{ inputs.language }}
+        CCN: ${{ inputs.ccn }}
+        output_file: "./.metrics.log"
 
     - name: Xenon
       run: |
-        echo ${{ inputs.max-absolute }}
-        echo ${{ inputs.max-modules }}
-        echo ${{ inputs.max-average }}
-
         xenon --max-absolute ${{ inputs.max-absolute }} \
               --max-modules ${{ inputs.max-modules }} \
               --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
