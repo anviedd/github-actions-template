@@ -24,6 +24,10 @@ inputs:
     description: "lizard's ccn"
     required: false
     default: "10"
+  path:
+    description: "lizard's path"
+    required: false
+    default: "."
 
 runs:
   using: "composite"
@@ -36,6 +40,7 @@ runs:
 
         echo ${{ inputs.language }}
         echo ${{ inputs.ccn }}
+        echo ${{ inputs.path }}
 
         python --version
 
@@ -74,16 +79,9 @@ runs:
               --arguments 100 \
               --ignore_warnings 0 \
               --working_threads 4 \
-              -T"nloc=1000000" ./backends >> ./.metrics.log
-        ls -la && pwd
+              -T"nloc=1000000" ${{ inputs.path }} >> ./.metrics.log
+        cat .metrics.log
       shell: bash
-
-    # - name: Lizard Runner
-    #   uses: Uno-Takashi/Lizard-Runner@v3
-    #   with:
-    #     language: ${{ inputs.language }}
-    #     CCN: ${{ inputs.ccn }}
-    #     output_file: "./.metrics.log"
 
     - name: Xenon
       run: |
