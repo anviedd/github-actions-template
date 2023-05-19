@@ -47,6 +47,8 @@ runs:
         pip install flake8-cognitive-complexity
         pip install flake8-expression-complexity
 
+        pip install lizard
+
       shell: bash
 
     - name: flake8-cognitive-complexity
@@ -62,11 +64,25 @@ runs:
       shell: bash
 
     - name: Lizard Runner
-      uses: Uno-Takashi/Lizard-Runner@v3
-      with:
-        language: ${{ inputs.language }}
-        CCN: ${{ inputs.ccn }}
-        output_file: "./.metrics.log"
+      run: |
+        echo "Lizard Runner"
+
+        lizard --language ${{ inputs.language }} \
+              --CCN ${{ inputs.ccn }} \
+              --length 500 \
+              --arguments 100 \
+              --ignore_warnings 0 \
+              --working_threads 4 \
+              -T"nloc=1000000" \
+              -W"whitelizard.txt" . >> ./.metrics.log
+      shell: bash
+
+    # - name: Lizard Runner
+    #   uses: Uno-Takashi/Lizard-Runner@v3
+    #   with:
+    #     language: ${{ inputs.language }}
+    #     CCN: ${{ inputs.ccn }}
+    #     output_file: "./.metrics.log"
 
     - name: Xenon
       run: |
