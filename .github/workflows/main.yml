@@ -101,12 +101,12 @@ jobs:
         uses: anviedd/github-actions-template/.github/actions/metrics@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          max-absolute: ${{ inputs.max-absolute }}
-          max-modules: ${{ inputs.max-modules }}
-          max-average: ${{ inputs.max-average }}
-          language: ${{ inputs.language }}
-          ccn: ${{ inputs.ccn }}
-          path: ${{ inputs.ccn }}
+          max-absolute: "A"
+          max-modules: "A"
+          max-average: "A"
+          language: "python"
+          ccn: "10"
+          path: "."
 
       - name: Run Security
         uses: anviedd/github-actions-template/.github/actions/security@main
