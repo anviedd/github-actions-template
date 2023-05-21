@@ -25,6 +25,8 @@ runs:
         pip install mypy
         pip install refurb
 
+        echo ${{ github.workspace }}
+
       shell: bash
 
     - name: Run mypy
@@ -33,7 +35,7 @@ runs:
         echo ${{ inputs.path }}
         ls -la && pwd
 
-        mypy ./ >> ../.type.log
+        mypy ./ >> ${{ github.workspace }}/.type.log
       shell: bash
 
     - name: Run refurb
@@ -42,7 +44,7 @@ runs:
         echo ${{ inputs.path }}
         ls -la && pwd
 
-        refurb ./ >> ../.type.log
+        refurb ./ >> ${{ github.workspace }}/.type.log
       shell: bash
 
     - name: Run pyright
@@ -50,7 +52,7 @@ runs:
       run: |
         pip install pyright
         ls -la && pwd
-        pyright|grep "error" >> ./.type.log
+        pyright|grep "error" >> ${{ github.workspace }}/.type.log
       shell: bash
 
     - name: Run pyright (pyright-version)
@@ -66,13 +68,12 @@ runs:
         URL=${{ github.event.pull_request.html_url }}
         GITHUB_TOKEN=${{ inputs.github-token }}
 
-        echo "\n" >> ./.type.log
-        echo "# Type \n" >> ./.type.log
-        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.type.log
+        echo "# Type" >> ${{ github.workspace }}/.type.log
+        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ${{ github.workspace }}/.type.log
 
         echo $URL
         echo $GITHUB_TOKEN
-        cat ./.type.log
+        cat ${{ github.workspace }}/.type.log
 
-        gh pr comment --body-file ./.type.log "${URL}"
+        gh pr comment --body-file ${{ github.workspace }}/.type.log "${URL}"
       shell: bash
