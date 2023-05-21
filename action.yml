@@ -89,7 +89,7 @@ runs:
         max-average: ${{ inputs.max-average }}
         language: ${{ inputs.language }}
         ccn: ${{ inputs.ccn }}
-        path: ${{ inputs.ccn }}
+        path: ${{ inputs.path }}
 
     - name: Run Security
       uses: anviedd/github-actions-template/.github/actions/security@main
