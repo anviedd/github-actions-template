@@ -118,4 +118,4 @@ jobs:
         uses: anviedd/github-actions-template/.github/actions/type@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path: ${{ inputs.path }}
+          path: "."
