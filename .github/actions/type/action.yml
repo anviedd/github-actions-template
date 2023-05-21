@@ -22,21 +22,10 @@ runs:
       run: |
         python -m pip install --upgrade pip
 
-        # pip install pyright
         pip install mypy
         pip install refurb
 
       shell: bash
-
-    - name: Run pyright
-      if: inputs.pyright-version == ''
-      uses: jakebailey/pyright-action@v1.5.1
-
-    - name: Run pyright (pyright-version)
-      if: inputs.pyright-version != ''
-      uses: jakebailey/pyright-action@v1.5.1
-      with:
-        version: ${{ inputs.pyright-version }}
 
     - name: Run mypy
       working-directory: ${{ inputs.path }}
@@ -54,6 +43,22 @@ runs:
         ls -la && pwd
 
         refurb ./ >> ./.type.log
+      shell: bash
+
+    - name: Run pyright
+      if: inputs.pyright-version == ''
+      run: |
+        pip install pyright
+        ls -la && pwd
+        pyright|grep "error" >> ./.type.log
+      shell: bash
+
+    - name: Run pyright (pyright-version)
+      if: inputs.pyright-version != ''
+      run: |
+        pip install pyright==${{ inputs.pyright-version }}
+        ls -la && pwd
+        pyright|grep "error" >> ./.type.log
       shell: bash
 
     - if: failure() && inputs.github-token != ''
