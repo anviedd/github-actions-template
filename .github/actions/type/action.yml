@@ -33,7 +33,7 @@ runs:
         echo ${{ inputs.path }}
         ls -la && pwd
 
-        mypy ./ >> ./.type.log
+        mypy ./ >> ../.type.log
       shell: bash
 
     - name: Run refurb
@@ -42,7 +42,7 @@ runs:
         echo ${{ inputs.path }}
         ls -la && pwd
 
-        refurb ./ >> ./.type.log
+        refurb ./ >> ../.type.log
       shell: bash
 
     - name: Run pyright
