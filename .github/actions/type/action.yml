@@ -9,6 +9,11 @@ inputs:
     required: false
     default: ""
     # default: 1.1.308
+  path:
+    description: "path"
+    required: false
+    default: "."
+    # default: 1.1.308
 
 runs:
   using: "composite"
@@ -35,12 +40,12 @@ runs:
 
     - name: Run mypy
       run: |
-        mypy ./ >> ./.type.log
+        mypy ${{ inputs.path }} >> ./.type.log
       shell: bash
 
     - name: Run refurb
       run: |
-        refurb ./ >> ./.type.log
+        refurb ${{ inputs.path }} >> ./.type.log
       shell: bash
 
     - if: failure() && inputs.github-token != ''
