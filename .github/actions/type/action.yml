@@ -41,12 +41,18 @@ runs:
     - name: Run mypy
       working-directory: ${{ inputs.path }}
       run: |
+        echo ${{ inputs.path }}
+        ls -la && pwd
+
         mypy ./ >> ./.type.log
       shell: bash
 
     - name: Run refurb
       working-directory: ${{ inputs.path }}
       run: |
+        echo ${{ inputs.path }}
+        ls -la && pwd
+
         refurb ./ >> ./.type.log
       shell: bash
 
