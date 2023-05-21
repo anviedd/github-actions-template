@@ -73,6 +73,9 @@ runs:
         echo "Lizard Runner"
         ls -la && pwd
 
+        echo ${{ inputs }}
+        echo ${{ inputs.language }}
+
         lizard --language ${{ inputs.language }} \
               --CCN ${{ inputs.ccn }} \
               --length 500 \
