@@ -102,3 +102,4 @@ runs:
       with:
         github-token: ${{ inputs.github-token }}
         pyright-version: ${{ inputs.pyright-version }}
+        path: ${{ inputs.path }}
