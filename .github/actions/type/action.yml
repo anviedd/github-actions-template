@@ -56,7 +56,7 @@ runs:
         GITHUB_TOKEN=${{ inputs.github-token }}
 
         echo "\n" >> ./.type.log
-        echo "# Type \n" >> ./.metrics.log
+        echo "# Type \n" >> ./.type.log
         echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.type.log
 
         echo $URL
