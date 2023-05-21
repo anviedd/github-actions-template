@@ -45,6 +45,11 @@ inputs:
     required: false
     default: ""
 
+  path:
+    description: "lizard's path"
+    required: false
+    default: "."
+
 # outputs:
 #   random-number:
 #     description: "Random number"
@@ -84,6 +89,7 @@ runs:
         max-average: ${{ inputs.max-average }}
         language: ${{ inputs.language }}
         ccn: ${{ inputs.ccn }}
+        path: ${{ inputs.ccn }}
 
     - name: Run Security
       uses: anviedd/github-actions-template/.github/actions/security@main

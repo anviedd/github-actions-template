@@ -56,6 +56,11 @@ on:
         required: false
         default: ""
 
+      path:
+        description: "lizard's path"
+        required: false
+        default: "."
+
 jobs:
   analysis:
     runs-on: ubuntu-latest
@@ -93,11 +98,12 @@ jobs:
         uses: anviedd/github-actions-template/.github/actions/metrics@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # max-absolute: ${{ inputs.max-absolute }}
-          # max-modules: ${{ inputs.max-modules }}
-          # max-average: ${{ inputs.max-average }}
-          # language: ${{ inputs.language }}
-          # ccn: ${{ inputs.ccn }}
+          max-absolute: ${{ inputs.max-absolute }}
+          max-modules: ${{ inputs.max-modules }}
+          max-average: ${{ inputs.max-average }}
+          language: ${{ inputs.language }}
+          ccn: ${{ inputs.ccn }}
+          path: ${{ inputs.ccn }}
 
       - name: Run Security
         uses: anviedd/github-actions-template/.github/actions/security@main
