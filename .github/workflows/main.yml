@@ -62,20 +62,17 @@ on:
         default: "."
 
 jobs:
-  analysis:
+  setup:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Python Version
         uses: actions/setup-python@v4
         # with:
         #   python-version: ${{ inputs.python-version }}
 
-      - run: |
+      - name: pwd and ls
+        run: |
           pwd && ls -la
           echo ${{ inputs.python-version }}
         shell: bash
@@ -86,17 +83,38 @@ jobs:
           python --version
         shell: bash
 
+  count:
+    needs: setup
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
       - name: Run Count
         uses: anviedd/github-actions-template/.github/actions/count@main
         with:
           # app-line-count-dir: ${{ inputs.app-line-count-dir }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
       - name: Run Lint
         uses: anviedd/github-actions-template/.github/actions/lint@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+  metrics:
+    needs: setup
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
       - name: Run Metrics
         uses: anviedd/github-actions-template/.github/actions/metrics@main
         with:
@@ -108,14 +126,70 @@ jobs:
           ccn: "10"
           path: "."
 
+  security:
+    needs: setup
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
       - name: Run Security
         uses: anviedd/github-actions-template/.github/actions/security@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           bandit-yml-path: ${{ inputs.bandit-yml-path }}
 
+  type:
+    needs: setup
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
       - name: Run Type
         uses: anviedd/github-actions-template/.github/actions/type@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: "."
+
+  # analysis:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Run Count
+  #       uses: anviedd/github-actions-template/.github/actions/count@main
+  #       with:
+  #         # app-line-count-dir: ${{ inputs.app-line-count-dir }}
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  #     - name: Run Lint
+  #       uses: anviedd/github-actions-template/.github/actions/lint@main
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  #     - name: Run Metrics
+  #       uses: anviedd/github-actions-template/.github/actions/metrics@main
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         max-absolute: "A"
+  #         max-modules: "A"
+  #         max-average: "A"
+  #         language: "python"
+  #         ccn: "10"
+  #         path: "."
+
+  #     - name: Run Security
+  #       uses: anviedd/github-actions-template/.github/actions/security@main
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         bandit-yml-path: ${{ inputs.bandit-yml-path }}
+
+  #     - name: Run Type
+  #       uses: anviedd/github-actions-template/.github/actions/type@main
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         path: "."
