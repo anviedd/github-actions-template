@@ -16,6 +16,12 @@ inputs:
     description: "xenon's max-average"
     required: false
     default: "A"
+  max-expression-complexit:
+    required: false
+    default: 7
+  max-cognitive-complexity:
+    required: false
+    default: 7
   language:
     description: "analysis language"
     required: false
@@ -61,14 +67,13 @@ runs:
     - name: flake8-cognitive-complexity
       run: |
         echo "cognitive-complexity"
-        # flake8 --max-cognitive-complexity=7 --statistics > ./.metrics.log
-        flake8 --max-cognitive-complexity=9 --statistics > ./.metrics.log
+        flake8 --max-cognitive-complexity=${{ inputs.max-cognitive-complexity }} --statistics > ./.metrics.log
       shell: bash
 
     - name: flake8-expression-complexity
       run: |
         echo "expression-complexity"
-        flake8 --max-expression-complexity=7 --statistics > ./.metrics.log
+        flake8 --max-expression-complexity=${{ inputs.max-expression-complexit }} --statistics > ./.metrics.log
       shell: bash
 
     - name: Lizard Runner
