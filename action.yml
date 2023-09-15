@@ -26,6 +26,15 @@ inputs:
     description: "xenon's max-average"
     required: false
     default: "A"
+
+  max-expression-complexit:
+    required: false
+    default: 7
+
+  max-cognitive-complexity:
+    required: false
+    default: 7
+  
   language:
     description: "analysis language"
     required: false
@@ -87,6 +96,8 @@ runs:
         max-absolute: ${{ inputs.max-absolute }}
         max-modules: ${{ inputs.max-modules }}
         max-average: ${{ inputs.max-average }}
+        max-expression-complexit: ${{ inputs.max-expression-complexit }}
+        max-cognitive-complexity: ${{ inputs.max-cognitive-complexity }}
         language: ${{ inputs.language }}
         ccn: ${{ inputs.ccn }}
         path: ${{ inputs.path }}
