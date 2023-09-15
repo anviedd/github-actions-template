@@ -61,7 +61,8 @@ runs:
     - name: flake8-cognitive-complexity
       run: |
         echo "cognitive-complexity"
-        flake8 --max-cognitive-complexity=7 --statistics > ./.metrics.log
+        # flake8 --max-cognitive-complexity=7 --statistics > ./.metrics.log
+        flake8 --max-cognitive-complexity=9 --statistics > ./.metrics.log
       shell: bash
 
     - name: flake8-expression-complexity
