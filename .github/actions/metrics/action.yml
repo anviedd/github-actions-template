@@ -67,13 +67,13 @@ runs:
     - name: flake8-cognitive-complexity
       run: |
         echo "cognitive-complexity"
-        flake8 --max-cognitive-complexity=${{ inputs.max-cognitive-complexity }} --statistics > ./.metrics.log
+        flake8 --max-cognitive-complexity=${{ inputs.max-cognitive-complexity }} --statistics ${{ inputs.path }} > ./.metrics.log
       shell: bash
 
     - name: flake8-expression-complexity
       run: |
         echo "expression-complexity"
-        flake8 --max-expression-complexity=${{ inputs.max-expression-complexit }} --statistics > ./.metrics.log
+        flake8 --max-expression-complexity=${{ inputs.max-expression-complexit }} --statistics ${{ inputs.path }} > ./.metrics.log
       shell: bash
 
     - name: Lizard Runner
