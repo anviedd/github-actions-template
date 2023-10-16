@@ -26,12 +26,12 @@ runs:
         echo ${{ inputs.github-token }}
       shell: bash
 
-    - name: Packj Security Audit
-      if: inputs.github-token != ''
-      uses: ossillate-inc/packj-github-action@v0.0.8-beta
-      with:
-        DEPENDENCY_FILES: pypi:requirements.txt
-        REPO_TOKEN: ${{ inputs.github-token }}
+    # - name: Packj Security Audit
+    #   if: inputs.github-token != ''
+    #   uses: ossillate-inc/packj-github-action@v0.0.8-beta
+    #   with:
+    #     DEPENDENCY_FILES: pypi:requirements.txt
+    #     REPO_TOKEN: ${{ inputs.github-token }}
 
     - name: Security Bandit
       if: inputs.bandit-yml-path == ''
