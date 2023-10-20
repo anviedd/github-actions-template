@@ -85,7 +85,7 @@ runs:
 
         lizard --language ${{ inputs.language }} \
               --CCN ${{ inputs.ccn }} \
-              --length 500 \
+              --length 750 \
               --arguments 100 \
               --ignore_warnings 0 \
               --working_threads 4 \
