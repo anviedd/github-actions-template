@@ -23,7 +23,7 @@ runs:
         python -m pip install --upgrade pip
 
         pip install -U mypy
-        pip install refurb
+        pip install -U refurb
 
         echo ${{ github.workspace }}
 
