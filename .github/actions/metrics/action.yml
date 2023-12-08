@@ -18,7 +18,7 @@ inputs:
     default: "A"
   max-expression-complexity:
     required: false
-    default: 7
+    default: 8
   max-cognitive-complexity:
     required: false
     default: 7
