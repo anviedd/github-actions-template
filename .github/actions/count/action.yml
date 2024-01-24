@@ -11,7 +11,7 @@ inputs:
   line-count-max:
     description: "line-count-max"
     required: false
-    default: 600
+    default: 650
 
 runs:
   using: "composite"
