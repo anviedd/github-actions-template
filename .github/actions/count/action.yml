@@ -33,9 +33,9 @@ runs:
         ls -la
         pwd
 
-        ls -la .github/actions/count
+        # ls -la .github/actions/count
 
-        sh .github/actions/count/line_count.sh
+        # sh .github/actions/count/line_count.sh
       shell: bash
 
     - if: failure() && inputs.github-token != ''
