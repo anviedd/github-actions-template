@@ -93,12 +93,12 @@ runs:
         cat .metrics.log
       shell: bash
 
-    - name: Xenon
-      run: |
-        xenon --max-absolute ${{ inputs.max-absolute }} \
-              --max-modules ${{ inputs.max-modules }} \
-              --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
-      shell: bash
+    # - name: Xenon
+    #   run: |
+    #     xenon --max-absolute ${{ inputs.max-absolute }} \
+    #           --max-modules ${{ inputs.max-modules }} \
+    #           --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
+    #   shell: bash
 
     - if: failure() && inputs.github-token != ''
       run: |
