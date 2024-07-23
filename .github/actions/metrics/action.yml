@@ -91,7 +91,8 @@ runs:
               --arguments 100 \
               --ignore_warnings 0 \
               --working_threads 4 \
-              -T"nloc=1000000" ${{ inputs.path }} >> ./.metrics.log
+              -T"nloc=1000000" ${{ inputs.path }} \
+              -x"*/test_*" >> ./.metrics.log
         cat .metrics.log
       shell: bash
 
