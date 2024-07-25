@@ -31,7 +31,7 @@ runs:
         echo ${{ inputs.path }}
         ls -la && pwd
 
-        mypy ./ >> ${{ github.workspace }}/.type.log
+        mypy ./
       shell: bash
 
     - name: Run refurb
@@ -40,7 +40,7 @@ runs:
         echo ${{ inputs.path }}
         ls -la && pwd
 
-        refurb ./ >> ${{ github.workspace }}/.type.log
+        refurb ./
       shell: bash
 
     - name: Run pyright
@@ -48,7 +48,7 @@ runs:
       run: |
         pip install pyright
         ls -la && pwd
-        pyright|grep "error" >> ${{ github.workspace }}/.type.log
+        pyright|grep "error"
       shell: bash
 
     - name: Run pyright (pyright-version)
