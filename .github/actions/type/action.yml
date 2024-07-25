@@ -58,3 +58,14 @@ runs:
         ls -la && pwd
         pyright|grep "error" >> ./.type.log
       shell: bash
+
+    - name: Output
+      if: always()
+      run: |
+        if [ -f ${{ github.workspace }}/.type.log ]; then
+          cat ${{ github.workspace }}/.type.log
+        fi
+        if [ -f ./.type.log ]; then
+          cat ./.type.log
+        fi
+      shell: bash
