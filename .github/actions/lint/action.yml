@@ -12,26 +12,26 @@ runs:
     - name: Lint
       run: |
         echo "Lint"
-        flake8 --statistics > ./.lint.log
+        flake8 --statistics
       shell: bash
 
     - name: Lint flake8-builtins
       run: |
         echo "flake8-builtins"
         pip install flake8-builtins
-        flake8 --statistics > ./.lint.log
+        flake8 --statistics
       shell: bash
 
     - name: Lint flake8-bugbear
       run: |
         echo "flake8-bugbear"
         pip install flake8-bugbear
-        flake8 --statistics > ./.lint.log
+        flake8 --statistics
       shell: bash
 
     - name: Lint pep8-naming
       run: |
         echo "pep8-naming"
         pip install pep8-naming
-        flake8 --statistics > ./.lint.log
+        flake8 --statistics
       shell: bash
