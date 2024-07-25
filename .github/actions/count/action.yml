@@ -33,3 +33,11 @@ runs:
 
         # sh .github/actions/count/line_count.sh
       shell: bash
+
+    - name: Output
+      if: always()
+      run: |
+        if [ -f ./line_count.log ]; then
+          cat ./line_count.log
+        fi
+      shell: bash

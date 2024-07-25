@@ -35,3 +35,11 @@ runs:
         pip install pep8-naming
         flake8 --statistics
       shell: bash
+
+    - name: Output
+      if: always()
+      run: |
+        if [ -f ./.lint.log ]; then
+          cat ./.lint.log
+        fi
+      shell: bash

@@ -49,3 +49,11 @@ runs:
       run: |
         flake8 --statistics --select=DUO >> ./.security.log
       shell: bash
+
+    - name: Output
+      if: always()
+      run: |
+        if [ -f ./.security.log ]; then
+          cat ./.security.log
+        fi
+      shell: bash
