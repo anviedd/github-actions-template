@@ -1,9 +1,5 @@
 name: Analysis Security
 inputs:
-  github-token:
-    description: "GITHUB_TOKEN"
-    required: false
-    default: ""
   bandit-yml-path:
     description: "bandit-yml file's path"
     required: false
@@ -23,7 +19,6 @@ runs:
         pip install bandit
         pip install dlint
 
-        echo ${{ inputs.github-token }}
       shell: bash
 
     # - name: Packj Security Audit
@@ -53,20 +48,4 @@ runs:
     - name: Security Dlint
       run: |
         flake8 --statistics --select=DUO >> ./.security.log
-      shell: bash
-
-    - if: failure() && inputs.github-token != ''
-      run: |
-        URL=${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN=${{ inputs.github-token }}
-
-        echo "\n" >> ./.security.log
-        echo "# Security \n" >> ./.metrics.log
-        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.security.log
-
-        echo $URL
-        echo $GITHUB_TOKEN
-        cat ./.security.log
-
-        gh pr comment --body-file ./.security.log "${URL}"
       shell: bash

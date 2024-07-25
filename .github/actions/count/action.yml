@@ -1,9 +1,5 @@
 name: Analysis Count
 inputs:
-  github-token:
-    description: "GITHUB_TOKEN"
-    required: false
-    default: ""
   app-line-count-dir:
     description: "app-line-count-dir path"
     required: true
@@ -36,22 +32,4 @@ runs:
         # ls -la .github/actions/count
 
         # sh .github/actions/count/line_count.sh
-      shell: bash
-
-    - if: failure() && inputs.github-token != ''
-      run: |
-        URL=${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN=${{ inputs.github-token }}
-
-        echo "\n" >> ./.count.log
-        echo "# Line Count \n" >> ./.count.log
-        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.count.log
-
-        cat line_count.log >> ./.count.log
-        cat ./.count.log
-
-        echo $URL
-        echo $GITHUB_TOKEN
-
-        gh pr comment --body-file ./.count.log "${URL}"
       shell: bash

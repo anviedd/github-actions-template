@@ -1,9 +1,5 @@
 name: Analysis metrics
 inputs:
-  github-token:
-    description: "GITHUB_TOKEN"
-    required: false
-    default: ""
   max-absolute:
     description: "xenon's max-absolute"
     required: false
@@ -40,8 +36,6 @@ runs:
   steps:
     - name: Install dependencies Linter
       run: |
-        echo ${{ inputs.github-token }}
-
         echo ${{ inputs.max-absolute }}
         echo ${{ inputs.max-modules }}
         echo ${{ inputs.max-average }}
@@ -102,19 +96,3 @@ runs:
     #           --max-modules ${{ inputs.max-modules }} \
     #           --max-average ${{ inputs.max-average }} ./ >> ./.metrics.log
     #   shell: bash
-
-    - if: failure() && inputs.github-token != ''
-      run: |
-        URL=${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN=${{ inputs.github-token }}
-
-        echo "\n" >> ./.metrics.log
-        echo "# Metrics \n" >> ./.metrics.log
-        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.metrics.log
-
-        echo $URL
-        echo $GITHUB_TOKEN
-        cat ./.metrics.log
-
-        gh pr comment --body-file ./.metrics.log "${URL}"
-      shell: bash

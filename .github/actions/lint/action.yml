@@ -1,9 +1,4 @@
 name: Analysis Lint
-inputs:
-  github-token:
-    description: "GITHUB_TOKEN"
-    required: false
-    default: ""
 
 runs:
   using: "composite"
@@ -39,20 +34,4 @@ runs:
         echo "pep8-naming"
         pip install pep8-naming
         flake8 --statistics > ./.lint.log
-      shell: bash
-
-    - if: failure() && inputs.github-token != ''
-      run: |
-        URL=${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN=${{ inputs.github-token }}
-
-        echo "\n" >> ./.lint.log
-        echo "# Lint \n" >> ./.lint.log
-        echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> ./.lint.log
-
-        echo $URL
-        echo $GITHUB_TOKEN
-        cat ./.lint.log
-
-        gh pr comment --body-file ./.lint.log "${URL}"
       shell: bash
