@@ -33,7 +33,7 @@ runs:
       run: |
         ls -la && pwd
 
-        bandit -r ./ >> ./.security.log
+        bandit -r ./ >>
       shell: bash
 
     - name: Security Bandit (setting file)
@@ -42,10 +42,10 @@ runs:
         echo ${{ inputs.bandit-yml-path }}
         ls -la && pwd
 
-        bandit -c ${{ inputs.bandit-yml-path }} -r ./ >> ./.security.log
+        bandit -c ${{ inputs.bandit-yml-path }} -r ./
       shell: bash
 
     - name: Security Dlint
       run: |
-        flake8 --statistics --select=DUO >> ./.security.log
+        flake8 --statistics --select=DUO
       shell: bash
